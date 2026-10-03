@@ -24,6 +24,9 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
     
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+    
     - name: Install Cordova
       run: npm install -g cordova
     
@@ -34,6 +37,10 @@ jobs:
         cordova platform add android
         cordova plugin add adivery-cordova-plugin
         cp ../index.html www/index.html
+    
+    - name: Build APK
+      run: |
+        cd myapp
         cordova build android
     
     - name: Upload APK
